@@ -5,8 +5,13 @@ class ApplicationController < ActionController::Base
 
 
   def current_cart
-    if current_user.carts.exists?(id: params[:id])
-      current_user.carts.where(id: params[:id], status: nil).first
+    # current_user.current_cart = cur
+    # if current_user.carts.exists?(id: params[:id])
+      if current_user
+        current_user.carts.where(status: nil).first
+      end
+      # current_user.carts.where(id: params[:id]).first
+
       # cart.status.nil? ? current_user.current_cart = cart : current_user.current_cart = nil
       # else
       #   nil
@@ -18,7 +23,7 @@ class ApplicationController < ActionController::Base
       # else
       #   nil
       # end
-    end
+    # end
   end
 
   # def current_cart
