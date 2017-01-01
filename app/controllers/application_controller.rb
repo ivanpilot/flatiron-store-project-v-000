@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
     # current_user.current_cart = cur
     # if current_user.carts.exists?(id: params[:id])
       if current_user #&& current_cart
-        current_user.current_cart = current_user.carts.find_by(status: nil)
+        # current_user.current_cart =
+        current_user.carts.find_by(status: nil)
       # elsif current_user
       #   current_user.current_cart = current_user.carts.build
       end

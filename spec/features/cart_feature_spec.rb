@@ -4,7 +4,7 @@ describe 'Feature Test: Cart', :type => :feature do
 
     context "logged in" do
       before(:each) do
-        @user = FactoryGirl.create(:user)
+        @user = User.first
         @user.current_cart = @user.carts.create
         @current_cart = @user.current_cart
         @first_item = Item.first
@@ -12,6 +12,7 @@ describe 'Feature Test: Cart', :type => :feature do
         @second_item = Item.second
         @second_line_item = @second_item.line_items.create(quantity: 1, cart: @user.current_cart)
         login_as(@user, scope: :user)
+        # binding.pry
       end
 
      it "Lists all items in the cart" do
@@ -62,7 +63,7 @@ describe 'Feature Test: Cart', :type => :feature do
 
     context "logged in" do
       before(:each) do
-        @user = FactoryGirl.create(:user)
+        @user = User.first
         login_as(@user, scope: :user)
       end
 
