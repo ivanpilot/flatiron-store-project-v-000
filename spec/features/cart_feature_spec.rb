@@ -71,17 +71,19 @@ describe 'Feature Test: Cart', :type => :feature do
         cart = @user.carts.create(status: "submitted")
         first_item = Item.first
         first_item.line_items.create(quantity: 1, cart: cart)
+        # binding.pry
         @user.current_cart = nil
         visit store_path
         expect(page).to_not have_link("Cart")
       end
 
       it "Does show Cart link when there is a current cart" do
-        @user.current_cart = @user.carts.create(status: "submitted")
+        @user.current_cart = @user.carts.create(status: nil)
         first_item = Item.first
         first_item.line_items.create(quantity: 1, cart: @user.current_cart)
+# binding.pry
         @user.save
-        # binding.pry
+
         visit store_path
         expect(page).to have_link("Cart", href: cart_path(@user.current_cart))
       end

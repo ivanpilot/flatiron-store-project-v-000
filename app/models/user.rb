@@ -6,15 +6,16 @@ class User < ActiveRecord::Base
 
   has_many :carts
 
-  attr_accessor :current_cart
+  def current_cart
+    # if !self.carts.find_by(status: nil)
+    #   @current_cart = self.carts.find_by(status: nil)
+    # end
+    @current_cart = self.carts.find_by(status: nil)
+    # binding.pry
+  end
 
-  # def current_cart=(current_cart)
-  #   @current_cart = current_cart
-  # end
-  #
-  # def current_cart
-  #   @current_cart
-  # end
+  def current_cart=(current_cart)
+    @current_cart = current_cart
+  end
 
-  # helper_method :current_cart
 end

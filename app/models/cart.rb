@@ -23,6 +23,9 @@ class Cart < ActiveRecord::Base
   def checkout
     self.update_item_inventory_for_checkout
     self.update(status: "submitted")
+    self.user.current_cart = nil
+    # self.user.save
+    # binding.pry
   end
 
   ###_____ Required methods ____###
